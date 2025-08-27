@@ -38,6 +38,9 @@ DEBUG = env("DEBUG")
 # Hosts
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", default=".railway.app").split(",")
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.railway.app",
+]
 # Application definition
 
 INSTALLED_APPS = [

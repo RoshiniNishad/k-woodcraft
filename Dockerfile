@@ -16,13 +16,13 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /app/requirements.txt
 
-# Copy project
+# Copy project files
 COPY . /app
 
-# Make entrypoint executable (entrypoint will run migrations, collectstatic, then start gunicorn)
+# Make entrypoint executable
 RUN chmod +x /app/entrypoint.sh
 
-# Expose the port Railway expects (Railway provides $PORT) — we'll bind to $PORT at runtime
+# Expose the port Railway expects (we’ll bind to $PORT at runtime)
 EXPOSE 8000
 
 # Start the app via entrypoint script
