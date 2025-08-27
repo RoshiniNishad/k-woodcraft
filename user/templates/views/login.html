@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+<title>Login | K-WoodCraft</title>
+{% endblock %}
+
+{% block banner %}
+<!-- Remove the big homepage banner -->
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 400px;">
+        <h3 class="text-center mb-4">Login</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} text-center">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+<form method="POST" novalidate>
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="text-danger small">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        {% if form.password.errors %}
+            <div class="text-danger small">{{ form.password.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn w-100" 
+        style="background-color: brown; color: white;">
+        Login
+    </button>
+</form>
+
+{% if form.non_field_errors %}
+    <div class="alert alert-danger mt-3 text-center">
+        {{ form.non_field_errors }}
+    </div>
+{% endif %}
+
+        <p class="text-center mt-3">
+            Don’t have an account? <a  href="{% url 'register' %} " style="color: brown ">Register</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

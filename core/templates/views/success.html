@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+{%block banner %}{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-center">
+  <h2 class="text-success">✅ Payment Successful!</h2>
+  <p><strong>Product:</strong> {{ payment.product.name }}</p>
+  <p><strong>Location:</strong> {{ payment.location }}</p>
+  <p><strong>Delivery Date:</strong> {{ payment.delivery_date }}</p>
+  <p><strong>Advance Paid:</strong> ₹{{ payment.advance_payment }}</p>
+  <p><strong>Remaining Balance:</strong> ₹{{ payment.remaining_amount }}</p>
+</div>
+{% endblock %}

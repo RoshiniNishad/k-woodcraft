@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+{% block title %}<title>Dining & Kitchen Furniture</title>{% endblock %}
+{% block banner %}{% endblock %}
+
+{% load static %}
+{% block body %}
+<div class="container py-5">
+  <h1 class="fw-bold text-center mb-4">Dining & Kitchen Furniture</h1>
+  <p class="lead text-center text-muted">Explore our elegant dining tables, kitchen cabinets, chairs, and more for your perfect home.</p>
+
+  <!-- Product Section -->
+  <div class="row g-4">
+    {% for product in products %}
+      <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm rounded-4 product-card overflow-hidden"
+             style="background: #fff; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          
+          <!-- Product Image -->
+          {% if product.image %}
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"
+                 style="height: 180px; object-fit: cover; transition: transform 0.4s ease;">
+          {% else %}
+            <img src="{% static 'images/fun1.jpeg' %}" class="card-img-top" alt="No Image"
+                 style="height: 180px; object-fit: cover; transition: transform 0.4s ease;">
+          {% endif %}
+
+          <!-- Card Body -->
+          <div class="card-body p-3">
+            <h6 class="fw-bold text-dark mb-1">{{ product.name }}</h6>
+            <p class="card-text text-muted small mb-2">{{ product.description|truncatechars:60 }}</p>
+
+            <!-- Price -->
+            <p class="fw-bold text-success mb-2">₹{{ product.price }}</p>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-1 mb-2">
+              <a href="{% url 'product_detail' product.pk %}" 
+                 class="btn btn-outline-dark btn-sm flex-fill fw-semibold hover-zoom">
+                View
+              </a>
+              <a href="{% url 'add_to_cart' product.pk %}" 
+                class="btn btn-success btn-sm flex-fill fw-semibold hover-zoom">
+                Add to Cart
+              </a>
+            </div>
+
+            <!-- Ratings -->
+            <div>
+              {% for i in "12345" %}
+                {% if product.rating|floatformat:1 >= i|add:"0.0"|floatformat:1 %}
+                  <i class="bi bi-star-fill text-warning small"></i>
+                {% else %}
+                  <i class="bi bi-star text-warning small"></i>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12 text-center">
+        <p class="text-muted fs-5">No dining or kitchen products available.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Hover Effects -->
+<style>
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+}
+.product-card:hover img {
+  transform: scale(1.03);
+}
+.hover-zoom {
+  transition: all 0.25s ease-in-out;
+}
+.hover-zoom:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+  transform: scale(1.05);
+}
+</style>
+{% endblock %}

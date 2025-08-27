@@ -1,0 +1,191 @@
+{% extends 'base/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+{% block title %}
+<title>Home | K-WoodCraft | Handcrafted Furniture in India</title>
+<meta name="description" content="K-WoodCraft offers premium handcrafted furniture, blending tradition with modern design. Shop wooden beds, tables, chairs, and more with elegant craftsmanship.">
+<meta name="keywords" content="K-WoodCraft, handcrafted furniture, wooden furniture, home decor, custom furniture, premium woodcraft India">
+{% endblock %}
+
+<style>
+  /* Product Card Hover */
+  .product-card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    /* Section titles scale */
+    h1, h2 {
+      font-size: 1.6rem !important;
+    }
+    p, .fs-5 {
+      font-size: 0.95rem !important;
+    }
+
+    /* Product grid */
+    .col-sm-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    .col-12.text-center p {
+      font-size: 1rem;
+    }
+
+    /* Buttons */
+    .hover-zoom {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+    }
+
+    /* About section spacing */
+    .about-section img {
+      margin-bottom: 15px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    /* Products take full width on extra-small */
+    .col-sm-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    h1, h2 {
+      font-size: 1.4rem !important;
+    }
+    p, .fs-5 {
+      font-size: 0.9rem !important;
+    }
+  }
+</style>
+
+
+{% block body %}
+
+
+<!-- ======== Featured Products ======== -->
+<section id="shop" class="py-5" style="background: linear-gradient(135deg, #f9f9f9, #ececec);">
+  <div class="container">
+    <!-- Section Title -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark display-6">Our Featured Collection</h2>
+      <p class="text-muted fs-5">Premium handcrafted wooden furniture — designed to make your home timeless.</p>
+    </div>
+
+    <div class="row g-4">
+      {% for product in products %}
+      <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm rounded-4 product-card overflow-hidden"
+             style="background: #fff; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          
+          <!-- Product Image -->
+          {% if product.image %}
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"
+                 style="height: 180px; object-fit: cover; transition: transform 0.4s ease;">
+          {% else %}
+            <img src="{% static 'images/fun1.jpeg' %}" class="card-img-top" alt="No Image"
+                 style="height: 180px; object-fit: cover; transition: transform 0.4s ease;">
+          {% endif %}
+
+          <!-- Card Body -->
+          <div class="card-body p-3">
+            <h6 class="fw-bold text-dark mb-1">{{ product.name }}</h6>
+            <p class="card-text text-muted small mb-2">{{ product.description|truncatechars:60 }}</p>
+
+            <!-- Price -->
+            <p class="fw-bold text-success mb-2">₹{{ product.price }}</p>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-1 mb-2">
+              <a href="{% url 'product_detail' product.pk %}" 
+                 class="btn btn-outline-dark btn-sm flex-fill fw-semibold hover-zoom">
+                View
+              </a>
+              <a href="{% url 'add_to_cart' product.pk %}" 
+                class="btn btn-success btn-sm flex-fill fw-semibold hover-zoom">
+                Add to Cart
+              </a>
+            </div>
+
+            <!-- Ratings -->
+            <div>
+              {% for i in "12345" %}
+                {% if product.rating|floatformat:1 >= i|add:"0.0"|floatformat:1 %}
+                  <i class="bi bi-star-fill text-warning small"></i>
+                {% else %}
+                  <i class="bi bi-star text-warning small"></i>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center">
+        <p class="text-muted fs-5">No products available.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Hover Effects -->
+<style>
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+}
+.product-card:hover img {
+  transform: scale(1.03);
+}
+.hover-zoom {
+  transition: all 0.25s ease-in-out;
+}
+.hover-zoom:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+  transform: scale(1.05);
+}
+</style>
+
+<!-- ======== About Section ======== -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="{% static 'images/bg.jpg' %}" alt="About K-WoodCraft" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <h1 class="fw-bold text-dark">Why Choose K-WoodCraft?</h1>
+        <p class="text-muted">We are committed to delivering furniture that tells a story — the story of fine craftsmanship, premium wood, and timeless designs. Our skilled artisans blend tradition and innovation to create pieces that are as durable as they are beautiful.</p>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-check-circle-fill text-success"></i> 100% premium quality wood</li>
+          <li><i class="bi bi-check-circle-fill text-success"></i> Custom designs to suit your taste</li>
+          <li><i class="bi bi-check-circle-fill text-success"></i> Sustainable and eco-friendly</li>
+          <li><i class="bi bi-check-circle-fill text-success"></i> 100% premium quality wood</li>
+          <li><i class="bi bi-check-circle-fill text-success"></i> Custom designs to suit your taste</li>
+          <li><i class="bi bi-check-circle-fill text-success"></i> Sustainable and eco-friendly</li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+  .product-card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+</style>
+{% endblock %}
