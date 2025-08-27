@@ -159,6 +159,7 @@ STORAGES = {
     },
 }
 
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media' ,'staticfiles')

@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-# from .models import Product 
-
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 class Product(models.Model):
     CATEGORY_CHOICES = [
@@ -14,9 +13,15 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='product_images/', blank=True, null=True)
+    # Use default storage (Cloudinary) explicitly
+    image = models.ImageField(
+        upload_to='product_images/',
+        blank=True,
+        null=True,
+        storage=MediaCloudinaryStorage()
+    )
     rating = models.PositiveIntegerField(default=0)
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)  # 👈 Added category
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
