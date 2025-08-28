@@ -144,17 +144,26 @@ def payment_success(request, pk):
 def cart_checkout(request):
     cart_items = Cart.objects.filter(user=request.user)
     total_amount = sum(item.product.price * item.quantity for item in cart_items)
-    half_total = total_amount // 2
+    half_total = total_amount / 2  # use float for accurate 50%
 
     if request.method == "POST":
-        form = PaymentForm(request.POST)
+        form = PaymentForm(request.POST, request.FILES)
         if form.is_valid():
             advance = form.cleaned_data['advance_payment']
+
             if advance < half_total:
-                messages.error(request, "Advance payment must be at least 50% of total.")
+                messages.error(request, f"❌ Advance payment must be at least 50% of total (₹{half_total:.2f}).")
             else:
-                messages.success(request, "Payment successful! Remaining amount ₹{}".format(total_amount - advance))
-                return redirect("success_page")
+                # ✅ Successful payment
+                messages.success(
+                    request,
+                    f"✅ Thank you for your Order! You have paid ₹{advance:.2f}. "
+                    f"Remaining amount ₹{total_amount - advance:.2f}. "
+                    "You will get further information regarding your Order soon."
+                )
+                # Clear the cart after checkout
+                cart_items.delete()
+                form = PaymentForm()  # reset form
     else:
         form = PaymentForm()
 
@@ -162,5 +171,5 @@ def cart_checkout(request):
         "cart_items": cart_items,
         "total_amount": total_amount,
         "half_total": half_total,
-        "form": form
+        "form": form,
     })

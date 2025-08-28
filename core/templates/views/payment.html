@@ -39,7 +39,7 @@
               </tr>
               <tr class="fw-bold table-success">
                 <td colspan="3" class="text-end">Total:</td>
-                <td>₹{{ total_amount }}</td>
+                <td id="totalAmount">₹{{ total_amount }}</td>
               </tr>
             </tbody>
           </table>
@@ -69,17 +69,17 @@
             <label class="form-label fw-semibold">
               <i class="fas fa-calendar-alt text-success"></i> Delivery Date
             </label>
-            {{ form.delivery_date|add_class:"form-control" }}
+            <!-- Force HTML5 date picker -->
+            {{ form.delivery_date|add_class:"form-control"|attr:"type:date" }}
           </div>
 
           <div class="mb-3">
             <label class="form-label fw-semibold">
               <i class="fas fa-money-bill-wave text-success"></i> Advance Payment
             </label>
-            {{ form.advance_payment|add_class:"form-control" }}
+            {{ form.advance_payment|add_class:"form-control"|attr:"id:advancePayment"|attr:"type:number"|attr:"min:0"|attr:"step:0.01" }}
             <small class="text-muted">
-              Advance must be at least <span class="fw-semibold text-danger">50%</span> of total 
-              (₹{{ advance_required|floatformat:2 }})
+              Minimum advance required: <span class="fw-semibold text-danger">50%</span> of total (₹<span id="advanceRequired">{{ advance_required|floatformat:2 }}</span>)
             </small>
           </div>
 
@@ -115,4 +115,20 @@
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Auto-fill advance amount script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const total = {{ total_amount|floatformat:2 }};
+  const minAdvance = (total * 0.5).toFixed(2);
+
+  const advanceInput = document.getElementById("advancePayment");
+  if (advanceInput) {
+    // Pre-fill with 50% of total
+    advanceInput.value = minAdvance;
+    // Set min required
+    advanceInput.setAttribute("min", minAdvance);
+  }
+});
+</script>
 {% endblock %}
