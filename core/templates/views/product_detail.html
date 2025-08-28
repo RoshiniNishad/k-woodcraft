@@ -1,24 +1,17 @@
-{% extends 'base/base.html' %}
-{% load static %}
-
-{% block title %}
+{% extends 'base/base.html' %} {% load static %} {% block title %}
 <title>{{ product.name }} | K-WoodCraft</title>
-{% endblock %}
-
-{% block banner %}{% endblock %}
-
-{% block body %}
+{% endblock %} {% block banner %}{% endblock %} {% block body %}
 <section class="py-5 bg-light">
   <div class="container">
     <div class="row g-5">
-      
       <!-- Product Image -->
       <div class="col-md-6 text-center">
         <div class="p-3 bg-white shadow-lg rounded-4">
-          <img src="{{ product.image.url }}" 
-               class="img-fluid rounded-4 shadow-sm" 
-               style="max-height: 500px; object-fit: cover;" 
-               alt="{{ product.name }}">
+          <img
+            src="{{ product.image.url }}"
+            class="img-fluid rounded-4 shadow-sm"
+            style="max-height: 500px; object-fit: cover"
+            alt="{{ product.name }}" />
         </div>
       </div>
 
@@ -38,6 +31,7 @@
           <span class="text-muted small ms-2">({{ product.rating }} / 5)</span>
         </div>
 
+
         <!-- Price -->
         <h3 class="text-success fw-bold mb-3">₹{{ product.price }}</h3>
 
@@ -53,16 +47,25 @@
         </ul>
 
         <!-- Buttons -->
-        <div class="mt-4">
-          <button class="btn btn-success rounded-pill px-4 py-2 shadow-sm me-2" style="transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div class="mt-4 d-flex gap-2">
+          <!-- Add to Cart -->
+          <a
+            href="{% url 'add_to_cart' product.pk %}"
+            class="btn btn-success rounded-pill px-4 py-2 shadow-sm d-flex align-items-center"
+            style="transition: 0.3s"
+            onmouseover="this.style.transform='scale(1.05)'"
+            onmouseout="this.style.transform='scale(1)'">
             <i class="bi bi-cart-plus me-2"></i> Add to Cart
-          </button>
-          <a href="{% url 'home' %}" class="btn btn-outline-secondary rounded-pill px-4 py-2 shadow-sm">
+          </a>
+
+          <!-- Back to Home -->
+          <a
+            href="{% url 'home' %}"
+            class="btn btn-outline-secondary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center">
             <i class="bi bi-arrow-left me-2"></i> Back to Home
           </a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -70,27 +73,36 @@
 <!-- Why Choose Us -->
 <section class="py-5">
   <div class="container text-center">
-    <h3 class="fw-bold mb-4">Why Choose <span class="text-success">K-WoodCraft</span>?</h3>
+    <h3 class="fw-bold mb-4">
+      Why Choose <span class="text-success">K-WoodCraft</span>?
+    </h3>
     <div class="row g-4">
       <div class="col-md-4">
         <div class="p-4 bg-white shadow rounded-4 h-100">
           <i class="bi bi-gem fs-1 text-success mb-3"></i>
           <h5>Premium Quality</h5>
-          <p class="text-muted">Crafted using the finest materials for unmatched durability and beauty.</p>
+          <p class="text-muted">
+            Crafted using the finest materials for unmatched durability and
+            beauty.
+          </p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="p-4 bg-white shadow rounded-4 h-100">
           <i class="bi bi-brush fs-1 text-success mb-3"></i>
           <h5>Handcrafted Design</h5>
-          <p class="text-muted">Every piece is made with precision and love by skilled artisans.</p>
+          <p class="text-muted">
+            Every piece is made with precision and love by skilled artisans.
+          </p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="p-4 bg-white shadow rounded-4 h-100">
           <i class="bi bi-truck fs-1 text-success mb-3"></i>
           <h5>Fast Delivery</h5>
-          <p class="text-muted">Get your furniture delivered to your doorstep quickly & safely.</p>
+          <p class="text-muted">
+            Get your furniture delivered to your doorstep quickly & safely.
+          </p>
         </div>
       </div>
     </div>

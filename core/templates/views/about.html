@@ -5,10 +5,13 @@
 {% load static %}
 
 {% block body %}
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
 <section class="py-5" style="background-color: #f8f9fa;">
   <div class="container">
     <!-- Heading -->
-    <div class="text-center mb-5">
+    <div class="text-center mb-5" data-aos="fade-down" data-aos-duration="1000">
       <h1 class="fw-bold display-5" style="color: #5a3825;">About K-WoodCraft</h1>
       <p class="lead text-muted mx-auto" style="max-width: 750px;">
         Crafting dreams into reality with premium handcrafted furniture that blends tradition, quality, and modern elegance.  
@@ -19,12 +22,12 @@
     <!-- About Content -->
     <div class="row align-items-center g-4">
       <!-- Image -->
-      <div class="col-lg-6 col-md-12">
+      <div class="col-lg-6 col-md-12" data-aos="fade-right" data-aos-duration="1200">
         <img src="{% static 'images/bg.jpg' %}" alt="K-WoodCraft Workshop" class="img-fluid rounded-4 shadow-sm w-100">
       </div>
 
       <!-- Text -->
-      <div class="col-lg-6 col-md-12">
+      <div class="col-lg-6 col-md-12" data-aos="fade-left" data-aos-duration="1200">
         <h3 class="fw-bold mb-3" style="color: #5a3825;">Our Story</h3>
         <p class="text-muted">
           K-WoodCraft was born from a simple vision — to make furniture that isn't just for homes, but a part of them.  
@@ -35,31 +38,31 @@
           That’s why we source our wood responsibly, using eco-friendly finishes and timeless designs to ensure your furniture remains a treasure for generations.
         </p>
         <ul class="list-unstyled mt-3">
-          <li>✅ 100% Handcrafted Designs</li>
-          <li>✅ Premium Quality Woods</li>
-          <li>✅ Sustainable & Eco-friendly Materials</li>
-          <li>✅ Customization Available</li>
+          <li data-aos="fade-up" data-aos-delay="100">✅ 100% Handcrafted Designs</li>
+          <li data-aos="fade-up" data-aos-delay="200">✅ Premium Quality Woods</li>
+          <li data-aos="fade-up" data-aos-delay="300">✅ Sustainable & Eco-friendly Materials</li>
+          <li data-aos="fade-up" data-aos-delay="400">✅ Customization Available</li>
         </ul>
       </div>
     </div>
 
     <!-- Timeline -->
     <div class="mt-5">
-      <h3 class="fw-bold text-center mb-4" style="color: #5a3825;">Our Journey</h3>
+      <h3 class="fw-bold text-center mb-4" style="color: #5a3825;" data-aos="fade-up">Our Journey</h3>
       <div class="row g-4">
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12" data-aos="zoom-in" data-aos-delay="100">
           <div class="p-4 rounded-4 shadow-sm bg-white h-100">
             <h5 class="fw-bold">2015 - The Beginning</h5>
             <p class="text-muted">A small workshop, one craftsman, and a dream to create furniture with heart and soul.</p>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12" data-aos="zoom-in" data-aos-delay="200">
           <div class="p-4 rounded-4 shadow-sm bg-white h-100">
             <h5 class="fw-bold">2018 - Growth & Recognition</h5>
             <p class="text-muted">Expanded our team and started delivering across cities, gaining recognition for our craftsmanship.</p>
           </div>
         </div>
-        <div class="col-md-4 col-sm-12 col-12">
+        <div class="col-md-4 col-sm-12 col-12" data-aos="zoom-in" data-aos-delay="300">
           <div class="p-4 rounded-4 shadow-sm bg-white h-100">
             <h5 class="fw-bold">2022 - K-WoodCraft Today</h5>
             <p class="text-muted">A thriving brand known for premium, sustainable furniture loved by customers nationwide.</p>
@@ -70,7 +73,7 @@
 
     <!-- Mission & Vision -->
     <div class="row mt-5 text-center">
-      <div class="col-md-6 col-sm-12 mb-4">
+      <div class="col-md-6 col-sm-12 mb-4" data-aos="fade-right" data-aos-duration="1000">
         <div class="p-4 shadow-sm rounded-4 h-100 bg-white">
           <h4 class="fw-bold mb-3" style="color: #5a3825;">Our Mission</h4>
           <p class="text-muted">
@@ -78,7 +81,7 @@
           </p>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 mb-4">
+      <div class="col-md-6 col-sm-12 mb-4" data-aos="fade-left" data-aos-duration="1000">
         <div class="p-4 shadow-sm rounded-4 h-100 bg-white">
           <h4 class="fw-bold mb-3" style="color: #5a3825;">Our Vision</h4>
           <p class="text-muted">
@@ -90,19 +93,19 @@
 
     <!-- Meet Our Team -->
     <div class="mt-5">
-      <h3 class="fw-bold text-center mb-4" style="color: #5a3825;">Meet Our Team</h3>
+      <h3 class="fw-bold text-center mb-4" style="color: #5a3825;" data-aos="fade-up">Meet Our Team</h3>
       <div class="row g-4 text-center">
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12" data-aos="fade-up" data-aos-delay="100">
           <img src="{% static 'images/per1.webp' %}" alt="Founder" class="rounded-circle mb-3 shadow img-fluid" width="150" height="150">
           <h5 class="fw-bold">Akriti Sharma</h5>
           <p class="text-muted">Founder & Master Craftsman</p>
         </div>
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12" data-aos="fade-up" data-aos-delay="200">
           <img src="{% static 'images/per2.webp' %}" alt="Designer" class="rounded-circle mb-3 shadow img-fluid" width="150" height="150">
           <h5 class="fw-bold">Ananya Mehta</h5>
           <p class="text-muted">Lead Designer</p>
         </div>
-        <div class="col-md-4 col-sm-12 col-12">
+        <div class="col-md-4 col-sm-12 col-12" data-aos="fade-up" data-aos-delay="300">
           <img src="{% static 'images/per3.webp' %}" alt="Operations" class="rounded-circle mb-3 shadow img-fluid" width="150" height="150">
           <h5 class="fw-bold">Priyanka Singh</h5>
           <p class="text-muted">Operations Manager</p>
@@ -111,7 +114,7 @@
     </div>
 
     <!-- CTA -->
-    <div class="text-center mt-5">
+    <div class="text-center mt-5" data-aos="zoom-in" data-aos-duration="1000">
       <a href="{% url 'home' %}" class="btn btn-lg px-4 py-2 text-white" 
          style="background: #5a3825; border-radius: 30px; transition: 0.3s;">
         Explore Our Collection
@@ -150,4 +153,14 @@
     }
   }
 </style>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    once: true, // run animation only once
+    offset: 100, // start animation a little before element enters viewport
+    duration: 800, // animation duration
+  });
+</script>
 {% endblock %}

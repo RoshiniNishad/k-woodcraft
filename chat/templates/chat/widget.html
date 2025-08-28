@@ -8,11 +8,21 @@
     border: 0; border-radius: 50%; padding: 16px;
     background: #198754; color: #fff; font-size: 22px;
     box-shadow: 0 10px 25px rgba(0,0,0,.2);
-    transition: transform 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+
+    /* Animation */
+    animation: kwcPulse 2s infinite ease-in-out;
   }
+
+  @keyframes kwcPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.15); }
+  }
+
   .kwc-chat-btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.2); /* stronger zoom on hover */
     background: #157347;
+    animation: none;       /* pause pulse when hovered */
   }
 
   /* Chat Window */
@@ -35,7 +45,7 @@
   }
   .kwc-chat-header button {
     background: transparent; border: none; color: #fff;
-    font-size: 20px; line-height: 1;
+    font-size: 20px; line-height: 1; cursor: pointer;
   }
 
   .kwc-chat-body {
